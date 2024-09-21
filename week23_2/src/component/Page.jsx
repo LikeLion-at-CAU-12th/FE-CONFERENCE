@@ -4,8 +4,8 @@ import sky from '../assets/sky.jpg';
 import star from '../assets/star2.jpg'; 
 
 function Page() {
-  const cloudVisible = useScrollFadeIn(0); // 하늘에서 구름
-  const starVisible = useScrollFadeIn(1); // 밤에서 별
+  const cloudVisible = useScrollFadeIn(0); //페이지최상단(하늘)위치
+  const starVisible = useScrollFadeIn(1); // 밤에서 별이 보이도록 
 
   return (
     <div>
