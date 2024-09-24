@@ -1,35 +1,33 @@
-// App.js
-import React, { useState } from 'react';
-import UserList from './manageUsers/userList';
-import UserInput from './manageUsers/userInput';
-import { useUsers } from './manageUsers/useUsers';
+import "./App.css";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Home from "./components/Home";
+import Container from "./components/first/Container";
+import SimpleComponent from "./components/second/SimpleComponent";
+import Combine from "./components/third/Combine";
+import Counter from "./components/fourth/Counter";
+import PokemonData from "./components/fourth/PokemonData";
+import PokemonComparison from "./Fifth/PokemonComparisons";
 
-const App = () => {
-  const [users, setUsers] = useUsers(); // 이걸로 초기화해주기
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-
-
-  const addUser = () => {
-    if (name && email) {
-      const newUser = { id: users.length + 1, name, email };
-      setUsers([...users, newUser]);
-      setName('');
-      setEmail('');
-    }
-  };
-
-  const deleteUser = (id) => {
-    setUsers(users.filter((user) => user.id !== id));
-  };
-
+function App() {
   return (
-    <div>
-      <h1>UserList</h1>
-      <UserList users={users} deleteUser={deleteUser} />
-      <UserInput name={name} setName={setName} email={email} setEmail={setEmail} addUser={addUser} />
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home></Home>}></Route>
+        <Route path="/test1" element={<Container></Container>}></Route>
+        <Route
+          path="/test2"
+          element={
+            <SimpleComponent text="This is a simple component with HOCs!"></SimpleComponent>
+          }
+        ></Route>
+        <Route path="/test3" element={<Combine></Combine>}></Route>
+        <Route path="/test4" element={<Counter></Counter>}></Route>
+        <Route path="/test5" element={<PokemonData></PokemonData>}></Route>
+
+        <Route path='/pokemonComparison' element={<PokemonComparison></PokemonComparison>}></Route>
+      </Routes>
+    </BrowserRouter>
   );
-};
+}
 
 export default App;
