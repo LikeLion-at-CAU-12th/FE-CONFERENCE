@@ -5,7 +5,7 @@ import RandomPokemon from "./components/RandomPokemon";
 const App = () => {
   return (
     <AppContainer>
-      <Title>세상이 흉흉하니 포켓몬 하나를 데려가렴 !</Title>
+      <h1>세상이 흉흉하니 포켓몬 하나를 데려가렴 !</h1>
       <RandomPokemon />
     </AppContainer>
   );
@@ -18,15 +18,8 @@ const AppContainer = styled.div`
   padding: 20px;
   background-color: #f0f0f0;
   min-height: 100vh;
-`;
-
-const Title = styled.h1`
-  // font-family: 'SBAggroB';
-  // src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/SBAggroB.woff') format('woff');
-  // font-weight: normal;
-  // font-style: normal;
-  font-family: 'CookieRun-Regular';
-  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/CookieRun-Regular.woff') format('woff');
-  font-weight: normal;
-  font-style: normal;
+    font-family: 'HakgyoansimChilpanjiugaeTTF-B';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/2408-5@1.0/HakgyoansimChilpanjiugaeTTF-B.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
 `;
