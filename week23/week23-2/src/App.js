@@ -6,7 +6,8 @@ import SimpleComponent from "./components/second/SimpleComponent";
 import Combine from "./components/third/Combine";
 import Counter from "./components/fourth/Counter";
 import PokemonData from "./components/fourth/PokemonData";
-import PokemonComparison from "./Fifth/PokemonComparisons";
+import PokemonComparisons from "./components/Fifth/PokemonComparisons";
+
 
 function App() {
   return (
@@ -24,7 +25,7 @@ function App() {
         <Route path="/test4" element={<Counter></Counter>}></Route>
         <Route path="/test5" element={<PokemonData></PokemonData>}></Route>
 
-        <Route path='/pokemonComparison' element={<PokemonComparison></PokemonComparison>}></Route>
+        <Route path='/pokemonComparison' element={<PokemonComparisons></PokemonComparisons>}></Route>
       </Routes>
     </BrowserRouter>
   );
