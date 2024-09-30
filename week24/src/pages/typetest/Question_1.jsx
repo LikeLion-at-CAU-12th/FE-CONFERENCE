@@ -27,7 +27,7 @@ const Question_1 = () => {
   return (
       <>
           <QuizDom>
-              <ProgressBar currentStep={1} totalSteps={4} />
+              <ProgressBar currentStep={1} totalSteps={2} />
               <QuestionContainer>
                   학업으로의 복귀는 언제인가요?
                   <Detail>*복학 또는 개강 시점을 알려주세요</Detail>

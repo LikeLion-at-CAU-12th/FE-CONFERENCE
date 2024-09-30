@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useCallback } from 'react'
 import styled from 'styled-components';
 import { QuizDom, QuestionContainer, ButtonDom, Button } from './Question_1.jsx';
 
@@ -9,19 +9,19 @@ const Question_2 = () => {
   const navigate = useNavigate();
   const [answer2, setAnswer2] = useState();
 
-  const handleNextClick = () => {
+  // useCallback을 사용하여 함수 재생성을 방지
+  const handleNextClick = useCallback(() => {
     if (!answer2) {
       alert("답변을 선택해주세요.");
     } else {
-      setAnswer2(answer2);
-      navigate("/typetest/2");
+      alert("테스트 끝");
+      // navigate("/typetest/3");
     }
-  };
+  }, [answer2, navigate]);
 
-  const handleBeforeClick = () => {
-    setAnswer2(answer2);
+  const handleBeforeClick = useCallback(() => {
     navigate("/typetest/1");
-  };
+  }, [navigate]);
 
   const reasons = [
     "jobPreparation",
@@ -33,71 +33,79 @@ const Question_2 = () => {
     "mentalStability",
     "newCareerExploration"
   ];
-
-  const toHome = () => {
-    navigate('/');
-  };
-
+  
   return (
     <>
-    <QuizDom>
-      <ProgressBar currentStep={2} totalSteps={4} />
-      <QuestionContainer>휴학을 선택한 계기는 무엇인가요?</QuestionContainer>
-      <Answers>
-        {reasons.map((reason, index) => (
-          <Answer key={index} checked={answer2 === reason}>
-            <label>
-              <input
-                type="radio" 
-                name="reason" 
-                value={reason} 
-                checked={answer2 === reason}
-                onChange={(e) => setAnswer2(e.target.value)}
-              />
-              {getReasonLabel(reason)}
-            </label>
-          </Answer>
-        ))}
-      </Answers>
-      <ButtonDom>
-        <Button onClick={handleBeforeClick}>이전</Button>
-        <Button 
-          style={{ backgroundColor: 'rgba(30, 58, 138, 1)', color:'white' }} 
-          onClick={handleNextClick}
-        >
-          다음
-        </Button>
-      </ButtonDom>
-    </QuizDom>
+      <QuizDom>
+        <ProgressBar currentStep={2} totalSteps={2} />
+        <QuestionContainer>휴학을 선택한 계기는 무엇인가요?</QuestionContainer>
+        <Answers>
+          {reasons.map((reason) => (
+            <MemoizedAnswer 
+              key={reason} 
+              reason={reason} 
+              // key 값을 reason 으로 하여 고유성 확보
+              checked={answer2 === reason} 
+              onChange={(e) => setAnswer2(e.target.value)} 
+            />
+          ))}
+        </Answers>
+        <ButtonDom>
+          <Button onClick={handleBeforeClick}>이전</Button>
+          <Button 
+            style={{ backgroundColor: 'rgba(30, 58, 138, 1)', color:'white' }} 
+            onClick={handleNextClick}
+          >
+            다음
+          </Button>
+        </ButtonDom>
+      </QuizDom>
     </>
   );
+};
 
-  function getReasonLabel(reason) {
-    switch (reason) {
-      case "jobPreparation":
-        return "취업 준비를 위해서";
-      case "internship":
-        return "인턴 근무를 위해서";
-      case "academicStress":
-        return "학업 스트레스를 완화하기 위해서";
-      case "selfDevelopment":
-        return "자기 계발을 위해서";
-      case "diverseExperiences":
-        return "다양한 경험을 위해서";
-      case "financialBurden":
-        return "경제적 부담 완화를 위해서";
-      case "mentalStability":
-        return "정서적 안정, 신체적 건강을 위해서";
-      case "newCareerExploration":
-        return "새로운 진로 탐색을 위해서";
-      default:
-        return "";
-    }
+// Answer 컴포넌트 메모이제이션
+const Answer = ({ reason, checked, onChange }) => (
+  <AnswerItem checked={checked}>
+    <label>
+      <input
+        type="radio" 
+        name="reason" 
+        value={reason} 
+        checked={checked}
+        onChange={onChange}
+      />
+      {getReasonLabel(reason)}
+    </label>
+  </AnswerItem>
+);
+
+const MemoizedAnswer = React.memo(Answer);
+
+function getReasonLabel(reason) {
+  switch (reason) {
+    case "jobPreparation":
+      return "취업 준비를 위해서";
+    case "internship":
+      return "인턴 근무를 위해서";
+    case "academicStress":
+      return "학업 스트레스를 완화하기 위해서";
+    case "selfDevelopment":
+      return "자기 계발을 위해서";
+    case "diverseExperiences":
+      return "다양한 경험을 위해서";
+    case "financialBurden":
+      return "경제적 부담 완화를 위해서";
+    case "mentalStability":
+      return "정서적 안정, 신체적 건강을 위해서";
+    case "newCareerExploration":
+      return "새로운 진로 탐색을 위해서";
+    default:
+      return "";
   }
 }
 
-export default Question_2
-
+export default Question_2;
 
 const Answers = styled.ul`
   display: flex;
@@ -110,7 +118,7 @@ const Answers = styled.ul`
   border-radius: 10px;
 `;
 
-const Answer = styled.li`
+const AnswerItem = styled.li`
   display: flex;
   align-items: center;
   margin: 5px;
@@ -121,5 +129,4 @@ const Answer = styled.li`
   gap: 10px;
   background-color: ${props => props.checked ? 'rgba(56, 189, 248, 0.07)' : 'rgba(30, 58, 138, 0.04)'};
   border: ${props => props.checked ? '1.4px solid rgba(30, 58, 138, 0.6)' : 'none'};
-  // box-shadow: ${props => props.checked ? '0px 3px 4px 0px rgba(30, 58, 138, 0.2);' : 'none'};
 `;
