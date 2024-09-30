@@ -14,7 +14,7 @@ function App() {
         <Route path="/typetest/1" element={<Question_1/>}/>
         <Route path="/typetest/2" element={<Question_2/>}/>
         {/* <Route path="/typetest/3" element={<Question_3/>}/> */}
-        <Route path="/result/panda/" element={<Result/>}/>
+        <Route path="/result/:type" element={<Result/>}/>
       </Routes>
     </BrowserRouter>
   );
