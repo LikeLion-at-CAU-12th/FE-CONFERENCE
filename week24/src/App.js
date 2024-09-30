@@ -4,6 +4,7 @@ import Home from './pages/Home';
 import Question_1 from './pages/typetest/Question_1';
 import Question_2 from './pages/typetest/Question_2';
 import Question_3 from './pages/typetest/Question_3';
+import Result from './pages/typetest/Result';
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Route path="/typetest/1" element={<Question_1/>}/>
         <Route path="/typetest/2" element={<Question_2/>}/>
         {/* <Route path="/typetest/3" element={<Question_3/>}/> */}
+        <Route path="/result/panda/" element={<Result/>}/>
       </Routes>
     </BrowserRouter>
   );
