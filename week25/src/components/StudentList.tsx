@@ -1,6 +1,7 @@
 // StudentList.tsx
 import React from 'react';
 import { Student } from '../models/Student';
+import styled from 'styled-components';
 
 
 interface StudentListProps {
@@ -11,6 +12,7 @@ const StudentList: React.FC<StudentListProps> = ({ students }) => {
   return (
     <div>
       <h2>학생 목록</h2>
+      <TableContainer>
     <table border={1} cellPadding={10} cellSpacing={0}>
         <thead>
           <tr>
@@ -34,8 +36,14 @@ const StudentList: React.FC<StudentListProps> = ({ students }) => {
           ))}
         </tbody>
       </table>
-    </div>
+      </TableContainer>
+      </div>
   );
 };
 
 export default StudentList;
+
+const TableContainer = styled.div`
+  max-height: 350px;
+  overflow-y: auto;
+`;

@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { Gender } from '../models/Person';
 import { Student } from '../models/Student';
 import { Professor } from '../models/Professor';
+import styled from 'styled-components';
 
 interface AddStudentFormProps {
   onAddStudent: (student: Student) => void;
@@ -44,16 +45,16 @@ const AddStudentForm: React.FC<AddStudentFormProps> = ({ onAddStudent, onAddProf
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <Form onSubmit={handleSubmit}>
       <div>
-        <label>구분</label>
+        <Label>구분</Label>
         <select value={type} onChange={(e) => setType(e.target.value as 'student' | 'professor')}>
           <option value="student">학생</option>
           <option value="professor">교수</option>
         </select>
       </div>
       <div>
-        <label>이름:</label>
+        <Label>이름</Label>
         <input
           type="text"
           value={name}
@@ -61,7 +62,7 @@ const AddStudentForm: React.FC<AddStudentFormProps> = ({ onAddStudent, onAddProf
         />
       </div>
       <div>
-        <label>나이:</label>
+        <Label>나이</Label>
         <input
           type="number"
           value={age === undefined ? '' : age} // 값이 없을 경우 빈 문자열로 처리
@@ -69,14 +70,14 @@ const AddStudentForm: React.FC<AddStudentFormProps> = ({ onAddStudent, onAddProf
         />
       </div>
       <div>
-        <label>성별:</label>
+        <Label>성별</Label>
         <select value={gender} onChange={(e) => setGender(e.target.value as Gender)}>
           <option value="Male">Male</option>
           <option value="Female">Female</option>
         </select>
       </div>
       <div>
-      <label>{type === 'student' ? '학생 ID:' : '교수 ID:'}</label>
+      <Label>{type === 'student' ? '학생 ID' : '교수 ID'}</Label>
         <input
           type="number"
           value={id === undefined ? '' : id} // 값이 없을 경우 빈 문자열로 처리
@@ -84,17 +85,34 @@ const AddStudentForm: React.FC<AddStudentFormProps> = ({ onAddStudent, onAddProf
         />
       </div>
       <div>
-        <label>{type === 'student' ? '수강 과목(쉼표로 구분) :':'당담 과목 :'}</label>
+        <Label>{type === 'student' ? '수강 과목':'당담 과목'}</Label>
         <input
+          style={{textAlign:"center"}}
           type="text"
-          placeholder="수강 과목을 쉼표로 구분하여 입력"
+          placeholder="쉼표로 구분하여 입력"
           value={courses}
           onChange={(e) => setCourses(e.target.value)}
         />
       </div>
       <button type="submit">추가</button>
-    </form>
+    </Form>
   );
 };
 
 export default AddStudentForm;
+
+const Form = styled.form`
+  display: flex;
+  flex-direction: column;
+  gap : 10px;
+`
+
+const Label = styled.label`
+  display : inline-block;
+  border : 1px solid black ;
+  padding : 2px 9px;
+  min-width : 60px;
+  border-radius : 5px;
+  margin-right : 10px;
+  text-align: center;
+`

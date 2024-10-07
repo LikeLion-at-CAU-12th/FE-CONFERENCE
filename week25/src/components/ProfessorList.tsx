@@ -1,6 +1,7 @@
 // StudentList.tsx
 import React from 'react';
 import { Professor } from '../models/Professor';
+import styled from 'styled-components';
 
 
 interface ProfessorListProps {
@@ -11,6 +12,7 @@ const ProfessorList: React.FC<ProfessorListProps> = ({ professors }) => {
   return (
     <div>
       <h2>교수 목록</h2>
+    <TableContainer>
     <table border={1} cellPadding={10} cellSpacing={0}>
         <thead>
           <tr>
@@ -34,8 +36,14 @@ const ProfessorList: React.FC<ProfessorListProps> = ({ professors }) => {
           ))}
         </tbody>
       </table>
+      </TableContainer>
     </div>
   );
 };
 
 export default ProfessorList;
+
+const TableContainer = styled.div`
+  max-height: 350px;
+  overflow-y: auto;
+`;
