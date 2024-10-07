@@ -17,8 +17,8 @@ const ProfessorList: React.FC<ProfessorListProps> = ({ professors }) => {
             <th>이름</th>
             <th>나이</th>
             <th>성별</th>
-            <th>ID</th>
-            <th>수강 과목</th>
+            <th>교수 ID</th>
+            <th>당담 과목</th>
           </tr>
         </thead>
         <tbody>

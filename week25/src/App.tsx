@@ -17,10 +17,9 @@ const App : React.FC = () => {
     setProfessor([...professors,professor]);
   }
 
-
 return (
   <div>
-    <h1>학생 관리 시스템</h1>
+    <h1>학생 및 교수 관리 시스템</h1>
     <AddStudentForm onAddStudent={handleAddStudent} onAddProfessor={handleAddProfessor}/>
     <StudentList students={students}/>
     <ProfessorList professors={professors}/>
@@ -30,3 +29,4 @@ return (
 };
 
 export default App;
+

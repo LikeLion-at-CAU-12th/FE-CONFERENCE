@@ -17,7 +17,7 @@ const StudentList: React.FC<StudentListProps> = ({ students }) => {
             <th>이름</th>
             <th>나이</th>
             <th>성별</th>
-            <th>ID</th>
+            <th>학생 ID</th>
             <th>수강 과목</th>
           </tr>
         </thead>
