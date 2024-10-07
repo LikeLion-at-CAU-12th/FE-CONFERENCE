@@ -26,10 +26,11 @@ const AddStudentForm: React.FC<AddStudentFormProps> = ({ onAddStudent, onAddProf
     }
 
     const courseList = courses ? courses.split(',').map(course => course.trim()) : []; // 입력된 과목이 있으면 처리
+    
     if(type === 'student'){
       const newStudent = new Student(name, age, gender, id, courseList); // 수강 과목 리스트 추가
       onAddStudent(newStudent);
-    } else{
+    } else { // type === 'professor'
       const newProfessor = new Professor(name, age, gender, id, courseList);
       onAddProfessor(newProfessor);
     }
@@ -75,7 +76,7 @@ const AddStudentForm: React.FC<AddStudentFormProps> = ({ onAddStudent, onAddProf
         </select>
       </div>
       <div>
-        <label>학생 ID:</label>
+      <label>{type === 'student' ? '학생 ID:' : '교수 ID:'}</label>
         <input
           type="number"
           value={id === undefined ? '' : id} // 값이 없을 경우 빈 문자열로 처리
@@ -83,7 +84,7 @@ const AddStudentForm: React.FC<AddStudentFormProps> = ({ onAddStudent, onAddProf
         />
       </div>
       <div>
-        <label>수강 과목 (쉼표로 구분):</label>
+        <label>{type === 'student' ? '수강 과목(쉼표로 구분) :':'당담 과목 :'}</label>
         <input
           type="text"
           placeholder="수강 과목을 쉼표로 구분하여 입력"
