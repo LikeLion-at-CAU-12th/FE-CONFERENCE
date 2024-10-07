@@ -17,17 +17,17 @@ const StudentList: React.FC<StudentListProps> = ({ students }) => {
             <th>이름</th>
             <th>나이</th>
             <th>성별</th>
-            <th>학생 ID</th>
+            <th>ID</th>
             <th>수강 과목</th>
           </tr>
         </thead>
         <tbody>
           {students.map((student) => (
-            <tr key={student.studentId}>
+            <tr key={student.id}>
               <td>{student.name}</td>
               <td>{student.age}</td>
               <td>{student.gender}</td>
-              <td>{student.studentId}</td>
+              <td>{student.id}</td>
               <td>{student.listCourses() !== undefined && student.listCourses()?.length 
                 ? student.listCourses()?.join(', ') : '없음'}</td>
               </tr>

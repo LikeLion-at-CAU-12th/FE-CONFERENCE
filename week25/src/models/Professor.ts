@@ -1,6 +1,6 @@
 import { Gender, Person } from "./Person";
 
-export class Student implements Person {
+export class Professor implements Person {
     name : string;
     age : number;
     gender : Gender;
