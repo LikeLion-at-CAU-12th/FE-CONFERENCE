@@ -1,0 +1,64 @@
+html,
+body {
+  display: flex;
+  width: 600px;
+  padding: 0;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  padding: 1rem 2rem;
+}
+
+nav {
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-evenly;
+}
+nav a {
+  padding: 5px 10px;
+  background-color: #000000;
+  color: #ffffff;
+  border-radius: 5px;
+}
+
+#listBox {
+  display: flex;
+  flex-direction: column;
+}
+
+a > div {
+  padding: 5px 10px;
+  background-color: #000000;
+  display: inline-block;
+  border-radius: 5px;
+  margin: 5px 0;
+}
+
+a > div > h2 {
+  margin: 0;
+  color: #ffffff;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+}
+
+input,
+textarea,
+button {
+  padding: 5px;
+  margin: 5px 0;
+}
+
+textarea {
+  resize: none;
+}
+
+button {
+  background-color: #000000;
+  color: white;
+  font-weight: bold;
+}
