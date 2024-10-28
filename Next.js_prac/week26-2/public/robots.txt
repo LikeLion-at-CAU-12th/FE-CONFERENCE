@@ -1,0 +1,13 @@
+# 모든 검색 엔진에 모든 페이지 허용
+User-agent: *
+Disallow: /private/       # /private/ 디렉터리 차단
+Disallow: /*.pdf$         # 모든 PDF 파일 차단
+
+# Google 크롤러에 특정 페이지 차단
+User-agent: Googlebot
+Disallow: /no-google/
+
+# Bing 크롤러에 특정 디렉터리 차단
+User-agent: Bingbot
+Disallow: /temp/
+
