@@ -48,7 +48,7 @@ export default function Home() {
 
       <form onSubmit={handleSubmit}>
         <div>
-          <label>Title: </label>
+          <label>Title:</label>
           <input
             type="text"
             value={title}
