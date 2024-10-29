@@ -31,6 +31,5 @@ function Note({ note } : any) {
                 <h2>{title}</h2>
             </div>
         </Link>
-
-    )
+    );
 }
