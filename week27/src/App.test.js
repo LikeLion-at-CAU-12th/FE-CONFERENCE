@@ -28,4 +28,10 @@ describe("덧셈 기능", () => {
     const result = calculateSum("4,5,9");
     expect(result).toBe(18); // 4 + 5 + 9 = 18
   });
+  test("음수 값이 있을 때 오류 발생", () => {
+    expect(() => calculateSum("4,-5,9")).toThrow("양의 정수만 입력");
+  });
+  test("문자 값이 있을 때 오류 발생", () => {
+    expect(() => calculateSum("4,a,9")).toThrow("양의 정수만 입력");
+  });
 });

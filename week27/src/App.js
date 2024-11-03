@@ -15,8 +15,23 @@ import axios from "axios";
   };
 
   // 숫자 문자열을 받아 합을 계산하는 함수
+  // export const calculateSum = (numbersString) => {
+  //   const numbersArray = numbersString.split(",").map(Number);
+  //   return numbersArray.reduce((acc, num) => acc + num, 0);
+  // };
+  // 숫자 문자열을 받아 합을 계산하는 함수
   export const calculateSum = (numbersString) => {
-    const numbersArray = numbersString.split(",").map(Number);
+    const numbersArray = numbersString.split(",").map(num => {
+      if (isNaN(num) || num.trim() === "") {
+        console.log("잘못된 입력 에러");
+      }
+      const parsedNum = Number(num);
+      if (parsedNum < 0) {
+        console.log("음수 입력 에러");
+      }
+      return parsedNum;
+    });
+    
     return numbersArray.reduce((acc, num) => acc + num, 0);
   };
 
@@ -60,7 +75,7 @@ function App() {
           value={numbers}
           onChange={(e) => setNumbers(e.target.value)}
           placeholder="숫자들을 입력하세요 (예: 4,5,9)"
-          style={{ padding: "10px", fontSize: "16px" }}
+          style={{ padding: "10px", fontSize: "16px", width: "220px" }}
         />
         <button
           onClick={handleFetchAndCalculate}
