@@ -1,6 +1,7 @@
 // App.js
 import React, { useState } from "react";
 import axios from "axios";
+import Text from "./components/Text/Text";
 
   // 사용자 ID로 API에서 사용자 이름을 가져오는 함수
   export const fetchUserName = async (userId) => {
@@ -94,6 +95,7 @@ function App() {
           </p>
         </div>
       )}
+      <Text></Text>
     </div>
   );
 }
