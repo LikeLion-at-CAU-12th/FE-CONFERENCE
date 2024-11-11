@@ -32,3 +32,18 @@ export const createEntry = async (req,res) => {
         res.status(500).json({message:"조회 과정에서 에러 발생",error});
     }
 };
+
+export const deleteEntryByID = async (req, res) => {
+    const {id} = req.params;
+
+    try{
+        const result = await GuestBook.findByIdAndDelete(id);
+        if (!result) { //id가 없다면
+            return res.status(404).json({ message: "해당하는 데이터가 없숨다" });
+        }
+        res.status(200).json({ message: "삭제 성공하였습니다" });
+        res.ridirect("/guestbook");
+    } catch(error) {
+        res.status(500).json({message: "삭제 과정에서 에러 발생", error});
+    }
+};
