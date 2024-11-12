@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>방명록</title>
+    <link rel="stylesheet" href="/guestbook.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>📝 선빈이의 방명록</h1>
+      <!-- 방명록 작성 폼 -->
+      <form action="/guestbook" method="POST">
+        <input type="text" name="author" placeholder="작성자" required />
+        <textarea name="message" placeholder="내용" required></textarea>
+        <button type="submit">등록</button>
+      </form>
+
+      <h2>방명록 목록</h2>
+      <div class="entries">
+        <% entries.forEach(entry => { %>
+        <div class="entry">
+          <div class="entry-header">
+            <div class="author"><%= entry.author %></div>
+            <div class="date"><%= entry.createdAt.toLocaleString() %></div>
+          </div>
+          <div class="message"><%= entry.message %></div>
+          <button class="delete" data-id="<%= entry._id %>">삭제</button>
+        </div>
+        <% }) %>
+      </div>
+    </div>
+  </body>
+  <script type="module">
+    document.addEventListener("DOMContentLoaded", () => {
+      // Select all delete buttons and add event listeners
+      const deleteButtons = document.querySelectorAll(".delete");
+      deleteButtons.forEach((button) => {
+        button.addEventListener("click", async (event) => {
+          const id = event.target.getAttribute("data-id");
+          if (confirm("정말 삭제하시겠습니까?")) {
+            try {
+              const response = await fetch(`/guestbook/${id}`, {
+                method: "DELETE",
+                headers: {
+                  "Content-Type": "application/json",
+                },
+              });
+              if (response.ok) {
+                alert("삭제가 성공하였습니다.");
+              } else {
+                alert("삭제에 실패하였습니다.");
+              }
+            } catch (error) {
+              console.error("삭제 과정에서 에러 발생:", error);
+              alert("삭제 과정에서 에러가 발생했습니다.");
+            }
+          }
+        });
+      });
+    });
+  </script>
+</html>
